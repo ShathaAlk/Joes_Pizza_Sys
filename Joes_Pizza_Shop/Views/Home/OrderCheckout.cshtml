@@ -1,0 +1,173 @@
+﻿@model List<Joes_Pizza_Shop.Models.CustomerOrderTable>
+
+@{
+    Layout = null;
+
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+
+    <title>The Order Checkout</title>
+
+    <style>
+        body {
+            background-image: url("/assets/images/bg.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center top;
+        }
+
+        .container {
+            /* background-color:  rgba(167, 78, 36, 0.5); */
+            background-color: rgba(255, 255, 255, 0.9);
+            height: auto;
+        }
+
+        .img-style {
+            width: 1.5em;
+        }
+
+        .decrease,
+        .increase,
+        .remove {
+            background: none;
+            border: none;
+        }
+
+        h6, h5 {
+            font-weight: 600;
+            color: rgba(235, 114, 57, 0.5);
+            border-bottom: .25rem solid transparent;
+        }
+
+        label {
+            color: rgba(235, 114, 57, 0.5);
+            border-bottom: .25rem solid transparent;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            background-color: rgba(167, 78, 36, 0.74);
+            border-color: rgba(255, 255, 255, 0.74);
+            width: 8em !important;
+        }
+
+            .btn-primary:hover,
+            .btn-primary:focus {
+                color: rgba(255, 255, 255);
+                border-color: rgba(255, 255, 255);
+                background-color: #6c757d;
+                box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
+            }
+
+        .form-check-input:checked {
+            background-color: rgba(0, 0, 0, 0.74);
+            border-color: rgba(0, 0, 0, 0.74);
+        }
+
+        input:focus:required {
+            box-shadow: 0 0 10px 1px rgb(255, 0, 0, 0.5);
+            border: 0.7px solid #FF0000;
+        }
+
+        .img-style {
+            width: 1em;
+        }
+    </style>
+
+    <header class="mb-auto">
+        <div>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link" href="/Home/Index">Home</a>
+                <a class="nav-link">Sign Up</a>
+                <a class="nav-link">login</a>
+            </nav>
+        </div>
+        <div class="cartNums">
+            <a href="/Customer/CustomerCart" style="text-decoration: none;"><img style="width: 35px;" src="~/assets/images/shopping-cart.png" alt=""><span style="color:black">  @TempData["CartNum"] </span></a>
+        </div>
+    </header>
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <main>
+            <div class="py-5 text-center">
+                <h1 class="fw-light">Order Checkout</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="rowClass row mb-6 text-center" style="border-bottom: 0.5px solid black; margin-bottom:15px">
+                        <div class="col-1 themed-grid-col text-muted"></div>
+                        <div class="col-3 themed-grid-col text-muted"><h6>Item Name</h6></div>
+                        <div class="col-2 themed-grid-col text-muted"><h6>Price</h6></div>
+                        <div class="col-3 themed-grid-col text-muted"><h6>Quantity</h6></div>
+                        <div class="col-2 themed-grid-col text-muted"><h6>Total</h6></div>
+                       
+
+                    </div>
+
+                    <div class="Customeritems">
+                        @foreach (var item in Model)
+                        {
+                            <div class="rowClass row mb-5 text-center">
+                                <div class="col-1 themed-grid-col text-muted">
+                                    <a href="/Home/DeleteItem/@item.CustomerOrderID"><img class="img-style" src="~/assets/images/x.png" /></a>
+                                </div>
+                                <div class="col-3 themed-grid-col text-muted">
+                                    <h6 class="my-0">@item.PizzaItem.PizzaName</h6>
+                                    <br />
+                                </div>
+                                <div class="col-2 themed-grid-col text-muted"><span class="text-muted price">$@item.PizzaItem.Price</span></div>
+                                <div class="col-3 themed-grid-col text-muted">
+                                    <a href="/Home/DecreaseQuantity/@item.CustomerOrderID"><img class="img-style" src="~/assets/images/minus.png" /></a>
+                                    <span class="text-muted Quantity">@item.Quantity</span>
+                                    <a href="/Home/IncreaseQuantity/@item.CustomerOrderID"><img class="img-style" src="~/assets/images/plus.png" /></a>
+                                </div>
+                                <div class="col-2 themed-grid-col text-muted"><span class="text-muted Total">$@item.TotalPricePerItem</span></div>
+
+                            </div>
+                        }
+
+                        <div class="rowClass row mb-2">
+                            <div class="col-10 themed-grid-col text-muted text-start">
+                                <h5 class="my-0">Total Price. $@TempData["TotalAmount"]</h5>
+
+                            </div>
+                        </div>
+                        <br />
+
+                        <hr class="my-4">
+                        <a class="btn btn-lg btn-primary" href="/Home/Checkout">Checkout</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2021 Joe’s Pizza</p>
+
+    </footer>
+</body>
+
+</html>
