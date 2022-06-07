@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shath\\source\\repos\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\Joes_Pizza_Shop.csproj": {}
+    "C:\\Users\\shath\\source\\repos\\BackUps - .NET Projects\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\Joes_Pizza_Shop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shath\\source\\repos\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\Joes_Pizza_Shop.csproj": {
+    "C:\\Users\\shath\\source\\repos\\BackUps - .NET Projects\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\Joes_Pizza_Shop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shath\\source\\repos\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\Joes_Pizza_Shop.csproj",
+        "projectUniqueName": "C:\\Users\\shath\\source\\repos\\BackUps - .NET Projects\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\Joes_Pizza_Shop.csproj",
         "projectName": "Joes_Pizza_Shop",
-        "projectPath": "C:\\Users\\shath\\source\\repos\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\Joes_Pizza_Shop.csproj",
+        "projectPath": "C:\\Users\\shath\\source\\repos\\BackUps - .NET Projects\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\Joes_Pizza_Shop.csproj",
         "packagesPath": "C:\\Users\\shath\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shath\\source\\repos\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\obj\\",
+        "outputPath": "C:\\Users\\shath\\source\\repos\\BackUps - .NET Projects\\Joes_Pizza_Shop\\Joes_Pizza_Shop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -88,6 +88,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
+            },
+            "Microsoft.jQuery.Unobtrusive.Ajax": {
+              "target": "Package",
+              "version": "[3.2.6, )"
             },
             "Migrations": {
               "target": "Package",

@@ -20,10 +20,7 @@ namespace Joes_Pizza_Shop.Models
         public int Purchased { get; set; }
         [ForeignKey("Order")]
         public Nullable<int> OrderID { get; set; }
-
         public Nullable<double> TotalPricePerItem { get { return (double)Quantity * PizzaItem.Price; } }
-
-
         public virtual Order Order { get; set; }
         public virtual PizzaItem PizzaItem { get; set; }
     }

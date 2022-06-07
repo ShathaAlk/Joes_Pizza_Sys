@@ -5,16 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\assets\css\style.css" />
-    <None Include="wwwroot\assets\images\bg.jpg" />
-    <None Include="wwwroot\assets\images\cart-100.png" />
-    <None Include="wwwroot\assets\images\checked.png" />
-    <None Include="wwwroot\assets\images\edit.png" />
-    <None Include="wwwroot\assets\images\minus.png" />
-    <None Include="wwwroot\assets\images\plus.png" />
-    <None Include="wwwroot\assets\images\shopping-cart.png" />
-    <None Include="wwwroot\assets\images\user.png" />
-    <None Include="wwwroot\assets\images\x.png" />
+    <Compile Remove="wwwroot\assets\**" />
+    <Content Remove="wwwroot\assets\**" />
+    <EmbeddedResource Remove="wwwroot\assets\**" />
+    <None Remove="wwwroot\assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\PizzaImages\S_HS.jpg" />
   </ItemGroup>
 
@@ -32,6 +29,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Migrations" Version="1.0.1" />
   </ItemGroup>

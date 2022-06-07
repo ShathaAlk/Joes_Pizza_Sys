@@ -2,9 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using System;
 using TechTalk.SpecFlow;
-
 
 namespace Joes_Pizza_Test
 {
@@ -21,8 +19,21 @@ namespace Joes_Pizza_Test
             webDriver.Navigate().GoToUrl("https://localhost:44379/");
             elm = new Pages_ElementsDefinition(webDriver);
         }
-        
-        [Given(@"select pizza")]
+
+        [Then(@"Click on Navbar Menu Link")]
+        public void ThenClickOnNavbarMenuLink()
+        {
+            elm.ClickInkMenuNavbar();
+        }
+
+        [Then(@"Menu page should be displayed")]
+        public void ThenMenuPageShouldBeDisplayed()
+        {
+            //Using Assert to verify the existence of the Menu page
+            Assert.That(elm.IslnkMenuPageExist, Is.True);
+        }
+
+        [Then(@"select pizza")]
         public void GivenSelectPizza()
         {
             elm.ClickbtnAddToCart1();
@@ -30,16 +41,11 @@ namespace Joes_Pizza_Test
             elm.ClickbtnAddToCart3();
             elm.ClickbtnAddToCart1();
 
-            //if the customer clicks on the same product, an alert message will be shown.
-            if (elm.IsAlertExistent())
-            {
-                webDriver.SwitchTo().Alert();
-                webDriver.SwitchTo().Alert().Accept();
-                webDriver.SwitchTo().DefaultContent();
-            }
+            //if the customer clicks on the same product, an popup alert message will be shown.
+            elm.ClickbtnPopupAlert();           
         }
 
-        [Given(@"Click on Cart Icon")]
+        [Then(@"Click on Cart Icon")]
         public void GivenClickOnCartIcon()
         {
             //Click on the cart icon to display the Order Checkout page
@@ -58,27 +64,51 @@ namespace Joes_Pizza_Test
         public void ThenChangeTheQuantityInCheckoutPage()
         {
             //The customer can increase or decrease the quantity or even delete the item from the cart.
+            //NOTE:These IWebElement numbers are constantly changing automatically.
             //elm.ClickbtnIncrease1();
             //elm.ClickbtnIncrease1();
             //elm.ClickbtnIncrease2();
             //elm.ClickbtnDecrease();
             //elm.ClickbtnDeleteItem();
         }
+        [Then(@"Click on Proceed button")]
+        public void ThenClickOnProceedButton()
+        {
+            elm.ClickbtnProceed();
+        }
 
-        [Then(@"Click on Checkout button")]
+        [Then(@"Payment section should be displayed")]
+        public void ThenPaymentSectionShouldBeDisplayed()
+        {
+            //Using Assert to verify the existence of the Payment section
+            Assert.That(elm.IsPaymentSectionExist, Is.True);  
+        }
+
+        [Then(@"fill the input fields")]
+        public void ThenFillTheInputFields()
+        {
+            elm.FilltxtFullName();
+            elm.FilltxtEmail();
+            elm.FilltxtAddress();
+            elm.FilltxtCCName();
+            elm.FilltxtCCNumber();
+            elm.FilltxtCCExpiration();
+            elm.FilltxtCCcvv();
+        }
+
+
+        [Then(@"Click on Pay button")]
         public void ThenClickOnCheckoutButton()
         {
-            //Click on the Checkout button to display the Order Confirmation page
-            elm.ClickbtnCheckout();
+            //Click on the pay button to display the Order Confirmation page
+            elm.ClickbtnPay();
         }
 
         [Then(@"Order Confirmation page should be displayed")]
         public void ThenOrderConfirmationPageShouldBeDisplayed()
-        {
-            
+        {            
             //Using Assert to verify the existence of the Order Confirmation page
-            Assert.That(elm.IslnkOrderPageExist, Is.True);
+            Assert.That(elm.IslnkOrderConfirmationPageExist, Is.True);
         }
     }
-
 }

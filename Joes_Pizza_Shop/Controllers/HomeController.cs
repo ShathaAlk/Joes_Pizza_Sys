@@ -1,14 +1,10 @@
 ﻿using Joes_Pizza_Shop.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Session;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Joes_Pizza_Shop.Controllers
 {
@@ -24,13 +20,24 @@ namespace Joes_Pizza_Shop.Controllers
         public IActionResult Index()
         {
             TheCart_OnLoad();
-
             //Show the products' contents for the customers
             var productsList = (from d in db.PizzaItems
                                 select d).ToList();
             return View(productsList);
         }
 
+        
+        // Menu page
+        public IActionResult Menu()
+        {
+            TheCart_OnLoad();
+
+            //Show the products' contents for the customers
+            var productsList = (from d in db.PizzaItems
+                                select d).ToList();
+            return View(productsList);
+        }
+ 
         public IActionResult AddToCart(int id)
         {
             PizzaItem PID = db.PizzaItems.Find(id);
@@ -42,7 +49,7 @@ namespace Joes_Pizza_Shop.Controllers
                     var obj = db.CustomerOrderTables.Where(model => model.PID == PID.PID && model.Purchased == 0).FirstOrDefault();
                     if (obj != null)
                     {
-                        TempData["msg"] = "<script>alert('It is Already in The Cart');</script>";
+                        TempData["AlertMsg"] = "<script> divModal.style.display = 'block';</script>";
                     }
                     else
                     {
@@ -57,7 +64,7 @@ namespace Joes_Pizza_Shop.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Menu");
         }
 
         //Fuction to count the cart content
@@ -70,7 +77,6 @@ namespace Joes_Pizza_Shop.Controllers
             return (CartNumbers);
         }
 
-
         public IActionResult OrderCheckout()
         {
             // Call the function to display the cart content' count. 
@@ -81,10 +87,17 @@ namespace Joes_Pizza_Shop.Controllers
                        join p in db.PizzaItems on cot.PID equals p.PID
                        where cot.Purchased == 0
                                select cot.Quantity * p.Price).Sum();
-            //Save the result in the Session and TempData
-            HttpContext.Session.SetString("TotalAmountSession", Convert.ToString(String.Format("{0:0.00}", TotalAmount)));
-            TempData["TotalAmount"] = Convert.ToString(String.Format("{0:0.00}", TotalAmount));
-
+            if (TotalAmount == 0)
+            {
+                TempData["msg"] = "<script> divEmptyCart.style.display = 'block'</script>";
+            }
+            else
+            {
+                //Save the result in the Session and TempData
+                HttpContext.Session.SetString("TotalAmountSession", Convert.ToString(String.Format("{0:0.00}", TotalAmount)));
+                TempData["TotalAmount"] = Convert.ToString(String.Format("{0:0.00}", TotalAmount));
+            }
+            
             //Use the CustomerOrderTables to displays the cart contents
             return View(db.CustomerOrderTables.Where(x=> x.Purchased == 0).ToList());
         }
@@ -137,7 +150,6 @@ namespace Joes_Pizza_Shop.Controllers
             db.SaveChanges();
             return RedirectToAction("OrderCheckout");
         }
-
 
         public IActionResult Checkout()
         {
