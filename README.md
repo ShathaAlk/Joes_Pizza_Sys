@@ -50,7 +50,7 @@ https://user-images.githubusercontent.com/58560808/172370152-96baf84a-2f84-42f8-
 ---
 
 ### Test The System
-Selenium, Specflow, and NUnit are used. 
+The System is tested by using Selenium, Specflow, and NUnit. 
 
-
+https://user-images.githubusercontent.com/58560808/172524689-4bf0af4c-5ef2-40bf-a7ed-dbff4a90026e.mp4
 
