@@ -1,6 +1,9 @@
 # Joes_Pizza_System
 Joe's Pizza System is an ASP.NET Core web application simulating an online ordering system of a pizza restaurant that allows customers to purchase through it. 
 In addition, performing automatic tests are done as Selenium, Specflow, and NUnit.
+</br>
+- :star2: Website Link: [https://aromalaptopshop.azurewebsites.net/](https://joespizzashop.azurewebsites.net/)
+</br>
 
 https://user-images.githubusercontent.com/58560808/172369031-39d15213-5e58-4695-a597-ca2d231a9102.mp4
 
